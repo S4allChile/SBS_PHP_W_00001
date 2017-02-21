@@ -75,11 +75,34 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => '',
-	'password' => '',
-	'database' => '',
+	'hostname' => '186.67.80.30',
+	'username' => 'pfrias',
+	'password' => 'Frias1978',
+	'database' => 'intranet_new',
 	'dbdriver' => 'mysqli',
+	'dbprefix' => '',
+	'pconnect' => FALSE,
+	'db_debug' => (ENVIRONMENT !== 'production'),
+	'cache_on' => FALSE,
+	'cachedir' => '',
+	'char_set' => 'utf8',
+	'dbcollat' => 'utf8_general_ci',
+	'swap_pre' => '',
+	'encrypt' => FALSE,
+	'compress' => FALSE,
+	'stricton' => FALSE,
+	'failover' => array(),
+	'save_queries' => TRUE
+);
+
+
+$db['eugcom'] = array(
+	'dsn'	=> '',
+	'hostname' => '192.168.1.4',
+	'username' => 'sa',
+	'password' => '1025',
+	'database' => 'Eug_gestion',
+	'dbdriver' => 'mssql',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
 	'db_debug' => (ENVIRONMENT !== 'production'),

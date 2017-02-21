@@ -1,0 +1,34 @@
+/*Lo mostramos 'hidden' por default*/
+.modal_ajax {
+    display:    none;
+    position:   fixed;
+    z-index:    1000;
+    top:        0;
+    left:       0;
+    height:     100%;
+    width:      100%;
+    background: rgba( 255, 255, 255, .8 );
+                50% 50%;
+                no-repeat;
+
+    background-image: url("ajax-loader.gif");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 25px;
+
+}
+
+/* Cuando el body tiene la clase 'loading' ocultamos la barra de navegacion */
+body.loading {
+    overflow: hidden;
+}
+
+/* Siempre que el body tenga la clase 'loading' mostramos el modal del loading */
+body.loading .modal_ajax {
+    display: block;
+}
+
+
+
+
+
