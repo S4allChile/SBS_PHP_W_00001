@@ -22,7 +22,7 @@
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Ventas <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <li><a href="#">Revisar pedidos</a></li>
+                  <li><a href="revisaPedido">Revisar pedidos</a></li>
                   <li><a href="#">Revisar Venta Web</a></li>
                   <li role="separator" class="divider"></li>
                   <li><a href="#">Clientes ERP</a></li>
