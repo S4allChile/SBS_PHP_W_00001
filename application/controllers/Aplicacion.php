@@ -287,6 +287,35 @@ class Aplicacion extends CI_Controller {
             echo '</tbody>';
             echo '</table>';
             
+            if($ped == 0 && $ano == 0){
+                $fechaCompra = "-";
+                $fechaPedido = "-";
+                $fechaArchivoSVL = "-";
+                $fechaPicking = "-";
+            }else{
+                $picking = $this->aplicacion_DAO->buscaPicking($ped,$ano);
+            
+                $fechaCompra = fechaMysqlNormal($pedido->fecha);
+                $fechaPedido = fechaSqlNormal($pedOc->Fecha_Pedido);
+                $fechaArchivoSVL = fechaSqlNormal($picking->fecha_archivo_pedido);
+                $fechaPicking = $picking->fecha_ingreso;
+            
+            }
+            echo '<hr/>';
+            echo '<h4>Seguimiento</h4>';
+            echo '<li> <strong>Fecha de Compra: </strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.$fechaCompra.' </li>';
+            echo '<li> <strong>Fecha de Pedido:</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.$fechaPedido.' </li>';
+            echo '<li> <strong>Fecha de Archivo SVL:</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.$fechaArchivoSVL.'</li>';
+            echo '<li> <strong>Fecha de Picking:</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.$fechaPicking.'</li>';
+            
+            
+            echo '<hr/>';
+            echo '<h4>Cliente</h4>';
+           
+            
+            
+            
+            
         }
         
     }

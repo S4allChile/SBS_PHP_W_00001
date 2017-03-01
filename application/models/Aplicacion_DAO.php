@@ -153,6 +153,12 @@ class Aplicacion_DAO extends CI_Model {
         
     }
     
+    /**
+     * Funcion que devuelve los documentos que se generaron de un pedido
+     * @param type $ped : Entero numero de pedido ERP
+     * @param type $ano : Entero Año de proceso del pedido
+     * @return type
+     */
     public function docPedido($ped,$ano){
         $campos = array(
             'Codigo_Tipo_Documento',
@@ -195,7 +201,8 @@ class Aplicacion_DAO extends CI_Model {
     public function consultaPedidoXoc($oc){
         $campos = array(
             'Numero_Pedido',
-            'Ano_Proceso'
+            'Ano_Proceso',
+            'Fecha_Pedido'
         );
         $this->dbSQL->SELECT($campos);
         $this->dbSQL->FROM('VeEncabezado_Pedido');
@@ -215,6 +222,18 @@ class Aplicacion_DAO extends CI_Model {
         $sql = $this->db->get();
         
         return $sql->row();
+        
+    }
+    
+    public function buscaPicking($ped,$ano){
+        $this->dbSQL->SELECT('*');
+        $this->dbSQL->FROM('Picking_archivo_pedido');
+        $this->dbSQL->WHERE('anio',$ano);
+        $this->dbSQL->WHERE('pedido',$ped);
+        $sql = $this->dbSQL->get();
+        
+        return $sql->row();
+        
         
     }
    
