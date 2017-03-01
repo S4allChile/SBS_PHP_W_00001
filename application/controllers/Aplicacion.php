@@ -302,16 +302,23 @@ class Aplicacion extends CI_Controller {
             
             }
             echo '<hr/>';
-            echo '<h4>Seguimiento</h4>';
+            echo '<h4 class="page-header">Seguimiento</h4>';
             echo '<li> <strong>Fecha de Compra: </strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.$fechaCompra.' </li>';
             echo '<li> <strong>Fecha de Pedido:</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.$fechaPedido.' </li>';
             echo '<li> <strong>Fecha de Archivo SVL:</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.$fechaArchivoSVL.'</li>';
             echo '<li> <strong>Fecha de Picking:</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.$fechaPicking.'</li>';
             
+            if($cliId->id_erp == ''){
+                $idERP = '<a class="btn btn-primary btn-xs" href="#">Enviar ERP</a>';
+            }else{
+                $idERP = $cliId->id_erp;
+            }
             
             echo '<hr/>';
-            echo '<h4>Cliente</h4>';
-           
+            echo '<h4 class="page-header">Cliente</h4>';
+            echo '<li> <strong>Nombre:</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.$cliId->nombre_cliente.' '.$cliId->apellidos.'</li>';
+            echo '<li> <strong>RUT: </strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.$cliId->rut.' </li>';
+            echo '<li> <strong>Id ERP:</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.$idERP.' </li>';
             
             
             
