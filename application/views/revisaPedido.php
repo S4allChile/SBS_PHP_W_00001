@@ -23,9 +23,10 @@
             </form>
         </div>
         <div class="col-md-2">
-            <form id="cargaStockCodigo" action="#" method="post">
-                <div class="form-group">
-                    <input type="text" class="form-control :required" name="codigo" id="codigo" placeholder="Rut" />
+            <form id="pedidoRut" action="#" method="post">
+                <div class="form-group" id="valRut">
+                    <input type="text" class="form-control :required" name="rut" id="rut" placeholder="Rut" />
+                    <span id="msjRut"></span>
                 </div>
               
                 <button type="submit" class="btn btn-block btn-primary" id="cargaStockWeb">Rut Cliente</button>
@@ -106,9 +107,27 @@
         <script src="<?= base_url(); ?>/vendors/js/jquery-3.1.1.min.js" type="text/javascript"></script>
         <script src="<?= base_url(); ?>/vendors/bootstrap-3.3.7/js/bootstrap.min.js" type="text/javascript"></script>
         <script src="<?= base_url(); ?>/vendors/vanadium/vanadium.js" type="text/javascript"></script>
+        <script src="<?= base_url(); ?>vendors/jquery.rut/jquery.rut.min.js" type="text/javascript"></script>
         
         <script>
             $(document).ready(function(){
+                $("input#rut").rut({
+                    formatOn: 'keyup',
+                    minimumLength: 8, // validar largo mínimo; default: 2
+                    validateOn: 'change' // si no se quiere validar, pasar null
+                });
+                
+                $("input#rut").rut().on('rutInvalido', function(e) {
+                    $('#valRut').addClass('has-error');
+                    $(this).val("");
+                    $(this).focus();
+                    $("#pedidoRut").submit(function() {
+                        return false;
+                    });
+
+                });
+
+                
                 $('#numPedido').submit(function(e){
                     e.preventDefault();
                     var dato = $(this).serialize();

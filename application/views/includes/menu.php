@@ -1,5 +1,5 @@
 
-<div class="container">
+<div class="container-fluid">
     <div class="col-md-12">
 
     <nav class="navbar navbar-inverse">
@@ -22,7 +22,7 @@
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Ventas <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <li><a href="revisaPedido">Revisar pedidos</a></li>
+                  <li><a href="../aplicacion/revisaPedido">Revisar pedidos</a></li>
                   <li><a href="#">Revisar Venta Web</a></li>
                   <li role="separator" class="divider"></li>
                   <li><a href="#">Clientes ERP</a></li>
@@ -35,7 +35,7 @@
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Procesos <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <li><a href="procesoWebSvl">Proceso WEB-SVL</a></li>
+                  <li><a href="../aplicacion/procesoWebSvl">Proceso WEB-SVL</a></li>
                   <li><a href="#">Proceso WEB-ERP</a></li>
                   <li role="separator" class="divider"></li>
                   <li><a href="#">Proceso de Stock</a></li>
@@ -47,6 +47,22 @@
               <li>
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Equipos Computacionales <span class="caret"></span></a>
               </li>
+              
+              <?php
+              if($this->session->userdata('idUsr') == 3 || $this->session->userdata('idUsr') == 14){
+              ?>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Gerencia <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="../gerencia/productos_pendientes">Productos Pendientes</a></li>
+                  <li><a href="#">-</a></li>
+                  <li role="separator" class="divider"></li>
+                  <li><a href="#">-</a></li>
+                  <li role="separator" class="divider"></li>
+                  <!--<li><a href="#">One more separated link</a></li>-->
+                </ul>
+              </li>
+              <?php } ?>
 
             </ul>
 

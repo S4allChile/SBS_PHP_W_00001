@@ -23,9 +23,33 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://192.168.1.5/informatica';
 
-//$config['base_url'] = 'http://186.67.190.77/informatica';
+$allowed_domains = array('192.168.1.5/informatica', '186.67.190.74/informatica');
+$default_domain  = '192.168.1.5/informatica';
+
+if (in_array($_SERVER['HTTP_HOST'], $allowed_domains, TRUE))
+{
+        $domain = $_SERVER['HTTP_HOST'];
+}
+else
+{
+        $domain = $default_domain;
+}
+
+if ( ! empty($_SERVER['HTTPS']))
+{
+        $config['base_url'] = 'https://'.$domain;
+}
+else
+{
+        $config['base_url'] = 'http://'.$domain;
+}
+
+
+
+//$config['base_url'] = 'http://192.168.1.5/informatica';
+
+
 
 /*
 |--------------------------------------------------------------------------
