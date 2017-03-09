@@ -17,7 +17,7 @@ and open the template in the editor.
         <div class="modal_ajax">CARGANDO....</div>
         <div class="modal-dialog">
                 <div class="loginmodal-container">
-                    <h1>Sistemas informatica SBS</h1><br>
+                    <h1>Sistemas revision informatica</h1><br>
                     <form id="login" method="post">
                         <input type="text" class=":required :email" name="user" placeholder="Email">
                         <input type="password" class=":required" name="pass" placeholder="Contraseña">
