@@ -338,10 +338,30 @@ class Aplicacion extends CI_Controller {
             }
             echo '<hr/>';
             echo '<h4 class="page-header">Seguimiento</h4>';
-            echo '<li> <strong>Fecha de Compra: </strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.$fechaCompra.' </li>';
-            echo '<li> <strong>Fecha de Pedido:</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.$fechaPedido.' </li>';
-            echo '<li> <strong>Fecha de Archivo SVL:</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.$fechaArchivoSVL.'</li>';
-            echo '<li> <strong>Fecha de Picking:</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.$fechaPicking.'</li>';
+            echo '<ul class="list-group">';
+                echo '<li class="list-group-item list-group-item-info">
+                  <span class="badge">'.$fechaCompra.'</span>
+                  <strong>Fecha de Compra:</strong>
+                </li>';
+                
+                echo '<li class="list-group-item list-group-item-info">
+                  <span class="badge">'.$fechaPedido.'</span>
+                  <strong>Fecha de Pedido:</strong>
+                </li>';
+                
+                echo '<li class="list-group-item list-group-item-info">
+                  <span class="badge">'.$fechaArchivoSVL.'</span>
+                  <strong>Fecha de Archivo SVL:</strong>
+                </li>';
+                
+                echo '<li class="list-group-item list-group-item-info">
+                  <span class="badge">'.$fechaPicking.'</span>
+                  <strong>Fecha de Picking:</strong>
+                </li>';
+                
+            echo '</ul>';
+            
+   
             
             if($cliId->id_erp == ''){
                 $idERP = '<a class="btn btn-primary btn-xs" href="#">Enviar ERP</a>';
@@ -351,9 +371,60 @@ class Aplicacion extends CI_Controller {
             
             echo '<hr/>';
             echo '<h4 class="page-header">Cliente</h4>';
-            echo '<li> <strong>Nombre:</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.$cliId->nombre_cliente.' '.$cliId->apellidos.'</li>';
-            echo '<li> <strong>RUT: </strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.$cliId->rut.' </li>';
-            echo '<li> <strong>Id ERP:</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.$idERP.' </li>';
+            echo '<ul class="list-group">';
+                echo '<li class="list-group-item list-group-item-info">
+                  <span class="badge">'.$cliId->nombre_cliente.' '.$cliId->apellidos.'</span>
+                  <strong>Nombre:</strong>
+                </li>';
+                
+                echo '<li class="list-group-item list-group-item-info">
+                  <span class="badge">'.$cliId->rut.'</span>
+                  <strong>RUT:</strong>
+                </li>';
+                
+                echo '<li class="list-group-item list-group-item-info">
+                  <span class="badge">'.$idERP.'</span>
+                  <strong>ID ERP:</strong>
+                </li>';
+                
+            echo '</ul>';
+            
+            
+            $detallePedido = $this->aplicacion_DAO->detallePedidoWeb($pedido->id_enc_pedido);
+            echo '<hr/>';
+            echo '<h4 class="page-header">Detalle Pedido</h4>';
+            echo '<table class="table table-condensed">';
+            echo '<thead>';
+            echo '<tr>';
+            echo '<th>CODIGO</th>';
+            echo '<th>DESCRIPCION</th>';
+            echo '<th>CANTIDAD</th>';
+            echo '<th>VALOR</th>';
+            echo '<th>TOTAL</th>';
+            echo '</tr>';
+            echo '</thead>';
+            echo '<tbody>';
+            foreach ($detallePedido AS $detalle){
+                
+                echo '<tr>';
+                    echo '<td>'.$detalle->isbn.'</td>';
+                    echo '<td>'.$detalle->descripcion.'</td>';
+                    echo '<td>'.$detalle->cantidad.'</td>';
+                    echo '<td>'.$detalle->valor.'</td>';
+                    echo '<td>'.$detalle->total_linea.'</td>';
+                echo '</tr>';
+                
+            }
+            
+            echo '</tbody>';
+            echo '</table>';
+            
+            
+            
+            
+            
+            
+            
             
             
             

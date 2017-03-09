@@ -115,7 +115,7 @@ $ci->load->model("gerencia_DAO");
                 $('#tblProdPendientes').DataTable({
                     "paging":   false,
                     "info":     false,
-                    "order": [[ 7, "asc" ]],
+                    "order": [[ 0, "asc" ]],
                     "language":{
                         "search": "Buscar:"
                     }

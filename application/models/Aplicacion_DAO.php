@@ -297,5 +297,16 @@ class Aplicacion_DAO extends CI_Model {
         return $sql->result();
         
     }
+    
+    public function detallePedidoWeb($idEncabezado){
+        
+        $this->db->SELECT('*');
+        $this->db->FROM('w_detalle_pedido');
+        $this->db->WHERE('id_encabezado',$idEncabezado);
+        $sql = $this->db->get();
+        
+        return $sql->result();
+        
+    }
    
 }
