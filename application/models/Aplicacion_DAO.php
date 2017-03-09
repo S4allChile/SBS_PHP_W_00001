@@ -19,7 +19,10 @@ class Aplicacion_DAO extends CI_Model {
         $this->dbSQL = $this->load->database('eugcom',TRUE);
     }
     
-    
+    /**
+     * 
+     * @return array
+     */
     public function stockWeb(){
         
         $this->dbSQL->SELECT('*');
@@ -46,7 +49,13 @@ class Aplicacion_DAO extends CI_Model {
         
     }
     
-    
+    /**
+     * Funcion que busca si un producto esta en la tabla de stock
+     * 
+     * @param int $codigo
+     * @param int $stock
+     * @return string
+     */
     public function addStock($codigo,$stock){
         
         //Pregunto si el producto existe en la tabla de stock
@@ -234,6 +243,58 @@ class Aplicacion_DAO extends CI_Model {
         
         return $sql->row();
         
+        
+    }
+    
+    public function detallePedido($pedido,$ano){
+        $this->dbSQL->SELECT('*');
+        $this->dbSQL->FROM('VeDetalle_Pedido');
+        $this->dbSQL->JOIN('SiProducto', 'SiProducto.Codigo_Producto = VeDetalle_Pedido.Codigo_Producto');
+        $this->dbSQL->WHERE('Ano_Proceso',$ano);
+        $this->dbSQL->WHERE('Numero_Pedido',$pedido);
+        $this->dbSQL->WHERE('VeDetalle_Pedido.Codigo_HE','0000100002');
+        $codigos = array('DESPACHO WEB');
+        $this->dbSQL->WHERE_NOT_IN('VeDetalle_Pedido.Codigo_producto',$codigos);
+        $sql = $this->dbSQL->get();
+        
+        return $sql->result();
+    }
+    
+    public function consultaStock($codigo,$bodega){
+        
+        $this->dbSQL->SELECT('*');
+        $this->dbSQL->FROM('BoExistencia');
+        $this->dbSQL->JOIN('SiProducto', 'SiProducto.Codigo_Producto = BoExistencia.Codigo_Producto');
+        $this->dbSQL->WHERE('BoExistencia.Codigo_HE','0000100002');
+        $this->dbSQL->WHERE('BoExistencia.Codigo_Producto',$codigo);
+        $this->dbSQL->WHERE('Codigo_Bodega',$bodega);
+        $this->dbSQL->WHERE('Ano_Proceso',2017);
+        $sql = $this->dbSQL->get();
+        
+        return $sql->row();
+        
+    }
+    
+    public function pedidosWebRut($rut){
+        
+        $this->db->SELECT('*');
+        $this->db->FROM('w_encabezado_pedido');
+        $this->db->JOIN('w_cliente', 'w_cliente.id_cliente = w_encabezado_pedido.id_cliente');
+        $this->db->WHERE('w_cliente.rut',$rut);
+        $sql = $this->db->get();
+        
+        return $sql->result();
+        
+    }
+    
+    public function consultaTransbank($tarjeta){
+        
+        $this->db->SELECT('*');
+        $this->db->FROM('trans_webpay');
+        $this->db->WHERE('tbk_final_numero_tarjeta',$tarjeta);
+        $sql = $this->db->get();
+        
+        return $sql->result();
         
     }
    

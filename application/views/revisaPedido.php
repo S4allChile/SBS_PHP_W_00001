@@ -32,33 +32,28 @@
                 <button type="submit" class="btn btn-block btn-primary" id="cargaStockWeb">Rut Cliente</button>
             </form>
         </div>
+        
+        
         <div class="col-md-2">
-            <form id="cargaStockCodigo" action="#" method="post">
+            <form id="transbank" action="#" method="post">
                 <div class="form-group">
-                    <input type="text" class="form-control :required" name="codigo" id="codigo" placeholder="email" />
-                </div>
-              
-                <button type="submit" class="btn btn-block btn-primary" id="cargaStockWeb">Email Cliente</button>
-            </form>
-        </div>
-        <div class="col-md-2">
-            <form id="cargaStockCodigo" action="#" method="post">
-                <div class="form-group">
-                    <input type="text" class="form-control :required" name="codigo" id="codigo" placeholder="Fecha" />
-                </div>
-              
-                <button type="submit" class="btn btn-block btn-primary" id="cargaStockWeb">Fecha Venta</button>
-            </form>
-        </div>
-        <div class="col-md-2">
-            <form id="cargaStockCodigo" action="#" method="post">
-                <div class="form-group">
-                    <input type="text" class="form-control :required" name="codigo" id="codigo" placeholder="4 ultimos " />
+                    <input type="text" class="form-control :required" name="tarjeta" id="codigo" placeholder="4 ultimos " />
                 </div>
               
                 <button type="submit" class="btn btn-block btn-primary" id="cargaStockWeb">Numero Tarjeta</button>
             </form>
         </div>
+        
+        <div class="col-md-2">
+            <form id="cargaStockCodigo" action="#" method="post">
+                <div class="form-group">
+                    <input type="text" class="form-control :required" name="codigo" id="codigo" placeholder="Codigo producto" />
+                </div>
+              
+                <button type="submit" class="btn btn-block btn-primary" id="cargaStockWeb">Stock</button>
+            </form>
+        </div>
+        
     </div>
     <br/>
     <div class="row">
@@ -183,6 +178,94 @@
                     
                     
                 });
+                
+                
+                
+                $('#cargaStockCodigo').submit(function(e){
+                    e.preventDefault();
+                    var dato = $(this).serialize();
+
+                    $.ajax({
+                        data:  dato,
+                        url:   'stockProducto',
+                        type:  'post',
+                        cache: false,
+                        beforeSend: function () {
+                                $('#resultados').html('Cargando datos...');                    
+                            },
+                        success:  function (response) {
+                               
+                                $('#resultados').html(response);
+                                
+                        },
+                        error: function(e){
+                            
+                            alert('ERROR AJAX: '+e);
+
+                        }
+                    });
+                    
+                    
+                    
+                });
+                
+                $('#pedidoRut').submit(function(e){
+                    e.preventDefault();
+                    var dato = $(this).serialize();
+
+                    $.ajax({
+                        data:  dato,
+                        url:   'pedidoWebRut',
+                        type:  'post',
+                        cache: false,
+                        beforeSend: function () {
+                                $('#resultados').html('Cargando datos...');                    
+                            },
+                        success:  function (response) {
+                               
+                                $('#resultados').html(response);
+                                
+                        },
+                        error: function(e){
+                            
+                            alert('ERROR AJAX: '+e);
+
+                        }
+                    });
+                    
+                    
+                    
+                });
+                
+                $('#transbank').submit(function(e){
+                    e.preventDefault();
+                    var dato = $(this).serialize();
+
+                    $.ajax({
+                        data:  dato,
+                        url:   'transbank',
+                        type:  'post',
+                        cache: false,
+                        beforeSend: function () {
+                                $('#resultados').html('Cargando datos...');                    
+                            },
+                        success:  function (response) {
+                               
+                                $('#resultados').html(response);
+                                
+                        },
+                        error: function(e){
+                            
+                            alert('ERROR AJAX: '+e);
+
+                        }
+                    });
+                    
+                    
+                    
+                });
+                
+                
                 
                 
                 $('.panel').on('click','.docs',function(){

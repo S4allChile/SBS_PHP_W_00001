@@ -175,10 +175,43 @@ class Aplicacion extends CI_Controller {
             echo '<td>'.$despacho.'</td>';
             echo '<td>'.$otrans.'</td>';
             echo '<td></td>';
-
-            echo '</tr>';
+            
+          
             echo '</tbody>';
             echo '</table>';
+            
+            echo '<hr/>';
+            echo '<h4 class="page-header">Detalle del Pedido</h4>';
+            
+            $detalle = $this->aplicacion_DAO->detallePedido($ped,$ano);
+            
+            echo '<table class="table table-condensed">';
+            echo '<thead>';
+            echo '<tr>';
+            echo '<th>CODIGO</th>';
+            echo '<th>DESCRIPCION</th>';
+            echo '<th>CANTIDAD</th>';
+            echo '<th>DESPACHADO</th>';
+            echo '<th>STK SVL</th>';
+            echo '<tr/>';
+            echo '</thead>';
+            echo '<tbody>';
+            
+            foreach ($detalle AS $producto){
+                
+                echo '<tr>';
+                echo '<td>'.$producto->Codigo_Producto.'</td>';
+                echo '<td>'.$producto->Descripcion.'</td>';
+                echo '<td>'.$producto->Cantidad.'</td>';
+                echo '<td>'.$producto->Despachado.'</td>';
+                echo '<td>'. number_format(valida_stock_svl($producto->Codigo_Producto),0).'</td>';
+                echo '<tr>';
+            }
+            
+            echo '</tbody>';
+            echo '</table>';
+            
+            
             
         }else{
             
@@ -186,6 +219,8 @@ class Aplicacion extends CI_Controller {
         }
  
     }
+    
+    
     
     public function documentosPedido($ped,$ano){
         
@@ -359,6 +394,105 @@ class Aplicacion extends CI_Controller {
             echo '</tbody>';
             echo '</table>';
         }
+        
+    }
+    
+    public function stockProducto(){
+        $codigo = $this->input->post('codigo');
+        
+        $stkWeb = $this->aplicacion_DAO->consultaStock($codigo,189);
+        $stkPrincipal = $this->aplicacion_DAO->consultaStock($codigo,1);
+        $stkSVL = valida_stock_svl($codigo);
+        
+        echo '<table class="table table-condensed">';
+            echo '<thead>';
+            echo '<tr>';
+            echo '<th>CODIGO</th>';
+            echo '<th>DESCRIPCION</th>';
+            echo '<th>STK WEB</th>';
+            echo '<th>STK SBS</th>';
+            echo '<th>STK SVL</th>';
+            echo '<tr/>';
+            echo '</thead>';
+            echo '<tbody>';
+            echo '<tr>';
+                echo '<td>'.$codigo.'</td>';
+                echo '<td>'.$stkWeb->Descripcion.'</td>';
+                echo '<td>'.$stkWeb->Stock.'</td>';
+                echo '<td>'.$stkPrincipal->Stock.'</td>';
+                echo '<td>'.$stkSVL.'</td>';
+                
+                echo '<tr>';
+            echo '</tbody>';
+            echo '</table>';
+        
+    }
+    
+    public function pedidoWebRut(){
+        $rut = $this->input->post('rut');
+        
+        $pedidos = $this->aplicacion_DAO->pedidosWebRut($rut);
+        
+        echo '<table class="table table-condensed">';
+            echo '<thead>';
+            echo '<tr>';
+            echo '<th>RUT</th>';
+            echo '<th>ID_CLIENTE</th>';
+            echo '<th>PEDIDO</th>';
+            echo '<th>PAGADO</th>';
+            echo '<tr/>';
+            echo '</thead>';
+            echo '<tbody>';
+            foreach ($pedidos AS $pedido){
+                
+                $pagado = $pedido->estado;
+                if($pagado == 1){
+                    
+                    $pago = '<span class="label label-danger">Sin Pago</span>';
+                    $linea = 'style="color:red"';
+                }else{
+                    $pago = '<span class="label label-success">OK</span>';
+                    $linea = '';
+                }
+                
+            echo '<tr '.$linea.'>';
+                echo '<td>'.$pedido->rut.'</td>';
+                echo '<td>'.$pedido->id_cliente.'</td>';
+                echo '<td>'.$pedido->correlativo.'</td>';
+                echo '<td>'.$pago.'</td>';
+            echo '<tr>';
+            }
+            echo '</tbody>';
+            echo '</table>';
+        
+        
+    }
+    
+    public function transbank(){
+        $tarjeta = $this->input->post('tarjeta');
+        
+        $tbk = $this->aplicacion_DAO->consultaTransbank($tarjeta);
+        
+        echo '<table class="table table-condensed">';
+            echo '<thead>';
+            echo '<tr>';
+            echo '<th>PEDIDO</th>';
+            echo '<th>MONTO</th>';
+            echo '<th>FECHA</th>';
+            echo '<tr/>';
+            echo '</thead>';
+            echo '<tbody>';
+            foreach ($tbk AS $dato){
+
+            echo '<tr>';
+                echo '<td>'.$dato->tbk_orden_compra.'</td>';
+                echo '<td>'.number_format($dato->tbk_monto,0,",",".").'</td>';
+                echo '<td>'.$dato->fechaCompleta.'</td>';
+            echo '<tr>';
+            }
+            echo '</tbody>';
+            echo '</table>';
+        
         
     }
     

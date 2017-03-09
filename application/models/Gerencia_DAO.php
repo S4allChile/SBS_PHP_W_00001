@@ -22,8 +22,8 @@ class Gerencia_DAO extends CI_Model {
     public function pendientesAgrupados(){
         $campos = array(
             'CODIGO',
-            'Descripcion'
-            
+            'Descripcion',
+            'PROVEEDOR'
         );
         $this->dbSQL->SELECT($campos);
         $this->dbSQL->SELECT_SUM('Cantidad');
@@ -56,6 +56,10 @@ class Gerencia_DAO extends CI_Model {
         $sql = $this->dbSQL->get();
         
         return $sql->result();
+    }
+    
+    public function pedidosPendientes(){
+        
     }
     
     

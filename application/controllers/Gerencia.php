@@ -52,5 +52,9 @@ class Gerencia extends CI_Controller {
             redirect();
         }
     }
+    
+    public function pedidosPendientesDetalle(){
+        
+    }
    
 }

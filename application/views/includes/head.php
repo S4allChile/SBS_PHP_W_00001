@@ -12,6 +12,8 @@ and open the template in the editor.
         <link href="<?= base_url(); ?>/vendors/bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <link href="<?= base_url(); ?>/vendors/css/propio.css" rel="stylesheet" type="text/css"/>
         <link href="<?= base_url(); ?>/vendors/vanadium/vanadium.css" rel="stylesheet" type="text/css"/>
+        <link href="<?= base_url(); ?>/vendors/datatables/datatables.min.css" rel="stylesheet" type="text/css"/>
+        <link href="<?= base_url(); ?>/vendors/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
         <div class="modal_ajax">CARGANDO....</div>

@@ -3,6 +3,8 @@ $ci = &get_instance();
 $ci->load->model("gerencia_DAO");
 ?>
 
+
+
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
@@ -17,20 +19,26 @@ $ci->load->model("gerencia_DAO");
                 <div class="panel-body">
                     <div class="page-header">
                         <h3>Productos Pendientes <small>Lista de pedidos con productos pendientes</small></h3>
+                        <button class="btn btn-success" id="exportarXls"><i class="fa fa-file-excel-o" aria-hidden="true"></i> Descargar</button>
                     </div>
                     
-                    <table class="table table-striped">
+                    
+   
+                                 
+                    <table id="tblProdPendientes" class="display" width="100%" cellspacing="0">
                         <thead>
                             <tr>
                                 <th>CODIGO</th>
                                 <th>DESCRIPCION</th>
+                                <th>PROVEEDOR</th>
                                 <th>PENDIENTE</th>
                                 <th>STK SBS</th>
                                 <th>STK SVL</th>
                                 <th>TRANSITO</th>
-                                <th>NºOC</th>
+                                <th>DIF</th>
                             </tr>
                         </thead>
+                        
                         <tbody>
                         <?php
                         foreach ($productosPendientes AS $producto){
@@ -53,6 +61,7 @@ $ci->load->model("gerencia_DAO");
                             <tr <?= $marca; ?> >
                                 <td><?= $producto->CODIGO;  ?></td>
                                 <td><?= utf8_encode($producto->Descripcion); ?></td>
+                                <td><?= $producto->PROVEEDOR;  ?></td>
                                 <td><?= $producto->PENDIENTE; ?></td>
                                 <td><?= (empty($stock->Stock))?'<span class="label label-danger">Sin info</span>':$stock->Stock ; ?></td>
                                 <td><?= intval($svl); ?></td>
@@ -63,12 +72,16 @@ $ci->load->model("gerencia_DAO");
                                 $numOC = "";
                                 foreach ($ocs AS $oc){
                                     $totCant += $oc->Cantidad;
-                                    $numOc = $oc->Numero_Orden_Compra;
-                                 }   
+                                    
+                                 }  
+                                 
+                                 $dif = $stkSvl+$totCant-$producto->PENDIENTE;
                                 ?>
                                 
                                 <td><?= $totCant; ?> </td>
-                                <td><?= $numOc; ?></td>
+                                <td>
+                                <?= ($dif < 0)?'<span class="label label-danger">'.$dif.'</span>':'<span class="label label-default">'.$dif.'</span>'  ?>
+                                </td>
                                
                             </tr>
                         <?php  } ?>    
@@ -91,9 +104,27 @@ $ci->load->model("gerencia_DAO");
         
         <script src="<?= base_url(); ?>/vendors/js/jquery-3.1.1.min.js" type="text/javascript"></script>
         <script src="<?= base_url(); ?>/vendors/bootstrap-3.3.7/js/bootstrap.min.js" type="text/javascript"></script>
-        
+        <script src="<?= base_url(); ?>/vendors/datatables/datatables.min.js" type="text/javascript"></script>
+        <script src="<?= base_url(); ?>/vendors/table2excel/src/jquery.table2excel.js" type="text/javascript"></script>
         <script>
-            
+            $(document).ready(function() {
+                $('#tblProdPendientes').DataTable({
+                    "paging":   false,
+                    "info":     false,
+                    "order": [[ 7, "asc" ]],
+                    "language":{
+                        "search": "Buscar:"
+                    }
+                });
+                
+                $("#exportarXls").click(function(){
+                    $("#tblProdPendientes").table2excel({
+                        exclude: ".noExl",
+                        name: "Productos_pendientes"
+                    });
+                });
+                
+            });
         </script>
         
     </body>
