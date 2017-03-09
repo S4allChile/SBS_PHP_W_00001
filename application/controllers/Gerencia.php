@@ -55,6 +55,21 @@ class Gerencia extends CI_Controller {
     
     public function pedidosPendientesDetalle(){
         
+        if($this->session->idUsr){
+                
+            $this->load->view('includes/head');
+            $this->load->view('includes/menu');
+            $data = array(
+                'pedidosPendientes' => $this->gerencia_DAO->pedidosPendientes()
+                
+            );
+            $this->load->view('pedidosPendientes',$data);
+            
+        }else{
+            
+            redirect();
+        }
+        
     }
    
 }

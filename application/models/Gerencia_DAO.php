@@ -59,6 +59,22 @@ class Gerencia_DAO extends CI_Model {
     }
     
     public function pedidosPendientes(){
+        $campos = array(
+            'CODIGO',
+            'Descripcion',
+            'PROVEEDOR',
+            'Cantidad',
+            'Despachado',
+            'PENDIENTE',
+            'N_PEDIDO',
+            'NOMBRE_FANTASIA'
+        );
+        $this->dbSQL->SELECT($campos);
+        $this->dbSQL->FROM('PEDIDOS_PENDIENTES');
+        $this->dbSQL->WHERE('ANIO',2017);
+        $sql = $this->dbSQL->get();
+        
+        return $sql->result();
         
     }
     

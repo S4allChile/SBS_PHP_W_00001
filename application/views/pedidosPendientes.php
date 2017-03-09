@@ -28,7 +28,8 @@ $ci->load->model("gerencia_DAO");
                     <table id="tblProdPendientes" class="display" width="100%" cellspacing="0">
                         <thead>
                             <tr>
-                               
+                                <th>PEDIDO</th>
+                                <th>CLIENTE</th>
                                 <th>CODIGO</th>
                                 <th>DESCRIPCION</th>
                                 <th>PROVEEDOR</th>
@@ -42,7 +43,7 @@ $ci->load->model("gerencia_DAO");
                         
                         <tbody>
                         <?php
-                        foreach ($productosPendientes AS $producto){
+                        foreach ($pedidosPendientes AS $producto){
                             
                             $stock = $ci->gerencia_DAO->stock(1,2017,$producto->CODIGO);
                             $svl = valida_stock_svl($producto->CODIGO);
@@ -60,7 +61,8 @@ $ci->load->model("gerencia_DAO");
                             }        
                         ?>
                             <tr <?= $marca; ?> >
-                              
+                                <td><?= $producto->N_PEDIDO;  ?></td>
+                                <td><?= $producto->NOMBRE_FANTASIA;  ?></td>
                                 <td><?= $producto->CODIGO;  ?></td>
                                 <td><?= utf8_encode($producto->Descripcion); ?></td>
                                 <td><?= $producto->PROVEEDOR;  ?></td>

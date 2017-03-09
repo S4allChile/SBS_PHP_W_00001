@@ -54,8 +54,8 @@
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Gerencia <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                    <li><a href="../gerencia/productos_pendientes">Productos Pendientes</a></li>
-                  <li><a href="#">-</a></li>
+                  <li><a href="../gerencia/productos_pendientes">Productos Pendientes</a></li>
+                  <li><a href="../gerencia/pedidosPendientesDetalle">Pedidos Pendientes</a></li>
                   <li role="separator" class="divider"></li>
                   <li><a href="#">-</a></li>
                   <li role="separator" class="divider"></li>
