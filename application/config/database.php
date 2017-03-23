@@ -102,7 +102,7 @@ $db['eugcom'] = array(
 	'username' => 'sa',
 	'password' => '1025',
 	'database' => 'Eug_gestion',
-	'dbdriver' => 'mssql',
+	'dbdriver' => 'sqlsrv',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
 	'db_debug' => (ENVIRONMENT !== 'production'),

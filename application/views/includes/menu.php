@@ -44,8 +44,13 @@
                 </ul>
               </li>
               
-              <li>
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Equipos Computacionales <span class="caret"></span></a>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Equipos computacionales <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="../equipos/equipoMantenedor">Mantenedor de equipos</a></li>
+                  <li><a href="../equipos/equiposGestion">Gestion de equipos</a></li>
+                  
+                </ul>
               </li>
               
               <?php
