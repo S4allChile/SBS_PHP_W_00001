@@ -8,14 +8,14 @@ $ci->load->model("gerencia_DAO");
 <div class="page-header">
     <div class="row">
 
-        <div class="col-md-2"> <h3>Mantenedor de equipos</h3></div>
-       
-                <div class="col-md-3">
+        <div class="col-md-2"> <h3>GESTION DE EQUIPOS</h3></div>
 
-                    <button type="button" class="btn btn-primary btn-sm " data-toggle="modal" data-target="#agregarEquipo"><i class="fa fa-plus"> Agregar nuevo equipo</i></button>
-                </div>
-                
-        
+        <div class="col-md-3">
+
+            <button type="button" class="btn btn-default btn-sm " data-toggle="modal" data-target="#agregarEquipo"><i class="fa fa-plus"> Agregar nuevo equipo</i></button>
+        </div>
+
+
     </div>
 
 </div>
@@ -26,55 +26,55 @@ $ci->load->model("gerencia_DAO");
 
 
     <div class="row">
-         <div class="row">
-        <div class="col-md-7">
-        <!------------------------------inicio del los filtros--------------------------------------------------------->
-        <div class="col-md-6">
-            <form id="porCodigo" action="#" method="post">
-                <div class="form-group">
-                    <input type="text" class="form-control :required" name="valor" id="codigo" placeholder="Codigo del equipo" />
+        <div class="row">
+            <div class="col-md-7">
+                <!------------------------------inicio del los filtros--------------------------------------------------------->
+                <div class="col-md-6">
+                    <form id="porCodigo" action="#" method="post">
+                        <div class="form-group">
+                            <input type="text" class="form-control :required" name="valor" id="codigo" placeholder="Busca por codigo" />
+                        </div>
+
+                        <button type="submit" class="btn btn-block btn-primary btn-xs" id="btnBuscaPorCodigo">Codigo</button>
+                    </form>
+                </div>
+                <div class="col-md-6">
+                    <form id="porSerie" action="#" method="post">
+                        <div class="form-group">
+                            <input type="text" class="form-control :required" name="valor" id="codigo" placeholder="Busca por serie" />
+                        </div>
+
+                        <button type="submit" class="btn btn-block btn-primary btn-xs" id="btnBuscaPorSerie">Numero Web</button>
+                    </form>
                 </div>
 
-                <button type="submit" class="btn btn-block btn-primary btn-xs" id="btnBuscaPorCodigo">Codigo</button>
-            </form>
-        </div>
-        <div class="col-md-6">
-            <form id="porSerie" action="#" method="post">
-                <div class="form-group">
-                    <input type="text" class="form-control :required" name="valor" id="codigo" placeholder="Nª Web" />
+            </div><!--fin de las cold7-->
+
+            <div class="col-md-5" >
+
+                <div style=" background-color: whitesmoke; color: black; border-radius:5px">
+
+                    <h4 align="center">  FICHA EQUIPO <br><small style=" background-color: whitesmoke; color: black;">selecciona equipo</small> </h4>
+
+
                 </div>
 
-                <button type="submit" class="btn btn-block btn-primary btn-xs" id="btnBuscaPorSerie">Numero Web</button>
-            </form>
-        </div>
-        
-        </div><!--fin de las cold7-->
-        
-        <div class="col-md-5" >
 
-            <div style=" background-color: #337ab7; color: white; border-radius:5px">
+            </div><!--fin de las cold45-->
 
-                <h4 align="center">  FICHA EQUIPO <br><small style=" background-color: #337ab7; color: white;">selecciona equipo</small> </h4>
-
-
-            </div>
-
-           
-        </div><!--fin de las cold45-->
-        
         </div><!---fibn de la row 2-->
-       
-        
-        
+
+
+
         <hr>
-        
+
         <!------------------------------fin del los filtros--------------------------------------------------------->
 
         <div class="col-md-7">
 
 
-           
-          
+
+
 
             <table id="" class="table table-condensed" width="100%" cellspacing="0">
                 <thead>
@@ -118,7 +118,7 @@ $ci->load->model("gerencia_DAO");
 
 
                         </tr>
-<?php } ?>    
+                    <?php } ?>    
                 </tbody>
             </table>
         </div>
@@ -126,7 +126,7 @@ $ci->load->model("gerencia_DAO");
 
         <div class="col-md-5" >
 
-            
+
             <div id="tablaMuestraFicha">
 
                 <!-----tabla de la ficha------->
@@ -161,11 +161,11 @@ $ci->load->model("gerencia_DAO");
                     <div class="row">
 
                         <div class="col-md-6">
-                            <hr>
-                            <div class="input-group ">
-                                <span class="input-group-addon"><i class="fa fa-barcode" aria-hidden="true" ></i></span>
-                                <input id="txtCodigo" name="txtCodigo" type="text" class="form-control :required" placeholder="Codigo" >
-                            </div>
+                            <!--                            <hr>-->
+                            <!--                            <div class="input-group ">
+                                                            <span class="input-group-addon"><i class="fa fa-barcode" aria-hidden="true" ></i></span>
+                                                            <input id="txtCodigo" name="txtCodigo" type="text" class="form-control :required" placeholder="Codigo" >
+                                                        </div>-->
 
                             <hr>
 
@@ -173,9 +173,9 @@ $ci->load->model("gerencia_DAO");
                                 <span class="input-group-addon"><i class="fa fa-laptop" aria-hidden="true"></i></span>
                                 <select id="sltTipo" name="sltTipo" class="form-control :required" >
                                     <option selected disabled>Tipo</option>
-<?php foreach ($equiposTipo as $tipo) { ?>
+                                    <?php foreach ($equiposTipo as $tipo) { ?>
                                         <option value="<?php echo $tipo->id; ?>"><?php echo $tipo->descripcion; ?></option>
-<?php } ?>
+                                    <?php } ?>
                                 </select>
                             </div>
 
@@ -193,10 +193,10 @@ $ci->load->model("gerencia_DAO");
                                 <select id="sltMarca" name="sltMarca" class="form-control :required" >
                                     <option selected disabled>Marca</option>
 
-<?php foreach ($equiposMarca as $marca) { ?>
+                                    <?php foreach ($equiposMarca as $marca) { ?>
                                         <option value="<?php echo $marca->id; ?>"><?php echo $marca->descripcion; ?></option>
 
-<?php } ?>
+                                    <?php } ?>
                                 </select>
                             </div>
 
@@ -263,22 +263,23 @@ $ci->load->model("gerencia_DAO");
                     <div class="row">
 
                         <div class="col-md-6">
-                            <hr>
-                            <div class="input-group ">
-                                <span class="input-group-addon"><i class="fa fa-barcode" aria-hidden="true" ></i></span>
-                                <input id="txtCodigoE" name="txtCodigoE" type="text" class="form-control :required" placeholder="Codigo" >
-                                <input id="hiddenId" name="hiddenId" type="hidden" >
-                            </div>
+                            <!--<hr>-->
+                            <!--                            <div class="input-group ">
+                                                            <span class="input-group-addon"><i class="fa fa-barcode" aria-hidden="true" ></i></span>
+                                                            <input id="txtCodigoE" name="txtCodigoE" type="text" class="form-control :required" placeholder="Codigo" >
+                                                            
+                                                        </div>-->
 
                             <hr>
 
                             <div class="input-group">
+                                <input id="hiddenId" name="hiddenId" type="hidden" >
                                 <span class="input-group-addon"><i class="fa fa-laptop" aria-hidden="true"></i></span>
                                 <select id="sltTipoE" name="sltTipoE" class="form-control :required" >
                                     <option selected  id="edTipoOldId"></option>
-<?php foreach ($equiposTipo as $tipo) { ?>
+                                    <?php foreach ($equiposTipo as $tipo) { ?>
                                         <option value="<?php echo $tipo->id; ?>"><?php echo $tipo->descripcion; ?></option>
-<?php } ?>
+                                    <?php } ?>
                                 </select>
                             </div>
 
@@ -296,10 +297,10 @@ $ci->load->model("gerencia_DAO");
                                 <select id="sltMarcaE" name="sltMarcaE" class="form-control :required" >
                                     <option selected  id="edMarcaOldId"></option>
 
-<?php foreach ($equiposMarca as $marca) { ?>
+                                    <?php foreach ($equiposMarca as $marca) { ?>
                                         <option value="<?php echo $marca->id; ?>"><?php echo $marca->descripcion; ?></option>
 
-<?php } ?>
+                                    <?php } ?>
                                 </select>
                             </div>
 
@@ -456,7 +457,7 @@ $ci->load->model("gerencia_DAO");
                     }
                     if (response == 1) {
                         alert('¡EQUIPO DADO DE BAJA CON EXITO!');
-
+                       window.location.reload();
                     }
 
                 },
@@ -481,7 +482,7 @@ $ci->load->model("gerencia_DAO");
                 type: 'post',
                 cache: false,
                 beforeSend: function () {
-                    $('#valores').html('Cargando datos ....');
+               //     $('#valores').html('Cargando datos ....');
                 },
                 success: function (response) {
                     var dataEquipo = eval(response);
@@ -524,7 +525,7 @@ $ci->load->model("gerencia_DAO");
                     $('#txtCodigoE').val(codigo);
                     $('#txtSerieE').val(serie);
                     $('#areaDescripcionE').val(descripcion);
-                    $('#txtModeloE').val(codigo);
+                    $('#txtModeloE').val(modelo);
                     $('#edTipoOldId').val(id_tipo);
                     $('#edTipoOldId').html(tipo);
                     $('#edMarcaOldId').val(id_marca);
@@ -569,7 +570,7 @@ $ci->load->model("gerencia_DAO");
                     }
                     if (response == 1) {
                         alert('¡EQUIPO EDITADO CON EXITO!');
-
+window.location.reload();
                     }
 
                 },
@@ -588,7 +589,7 @@ $ci->load->model("gerencia_DAO");
         $('#formIngresarEquipo').submit(function () {
 
             var dataForm = $(this).serialize();
-
+            //alert(dataForm);
 
             $.ajax({
                 data: dataForm,
@@ -599,17 +600,19 @@ $ci->load->model("gerencia_DAO");
 
                 },
                 success: function (response) {
-                    //  alert(response);
-                    if (response == 0) {
-                        alert('Problemas al ingresar el equipo');
-                    }
-                    if (response == 1) {
-                        alert('¡EQUIPO INGRESADO CON EXITO!');
-
-                    }
-                    if (response == 2) {
-                        alert('¡CODIGO INGRESADO YA EXISTE');
-                    }
+                    alert(response);
+                    //window.location.reload();
+                    
+//                    if (response == 0) {
+//                        alert('Problemas al ingresar el equipo');
+//                    }
+//                    if (response == 1) {
+//                        alert('¡EQUIPO CREADO CON EXITO!');
+//
+//                    }
+//                    if (response == 2) {
+//                        alert('¡CODIGO A CREAR YA EXISTE');
+//                    }
 
                 },
                 error: function (e) {

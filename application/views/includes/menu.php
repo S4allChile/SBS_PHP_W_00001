@@ -47,8 +47,11 @@
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Equipos computacionales <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <li><a href="../equipos/equipoMantenedor">Mantenedor de equipos</a></li>
-                  <li><a href="../equipos/equiposGestion">Gestion de equipos</a></li>
+                  <li><a href="../EquiposController/equipoMantenedor">Gestion de equipos</a></li>
+                  <li role="separator" class="divider"></li>
+                  <li><a href="../EquiposController/equiposIngSal">Ingresos y salidas</a></li>
+                  <li role="separator" class="divider"></li>
+                  <li><a href="../EquiposController/equiposIngSal">Seguimiento</a></li>
                   
                 </ul>
               </li>

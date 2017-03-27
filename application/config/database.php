@@ -117,3 +117,4 @@ $db['eugcom'] = array(
 	'failover' => array(),
 	'save_queries' => TRUE
 );
+
